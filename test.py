@@ -56,11 +56,14 @@ class stopwatch():
 
         #define the turtle canvas
         canvas = tk.Canvas(root)
-        canvas.config(width=400, height=500)
-        canvas.place(x=0,y=0)
-        #canvas.place(x=10,y=15)
+        canvas.config(width=380, height=480)
+        #canvas.pack(expand=1, fill="both")
+        canvas.place(x=10,y=10,width=380,height=480)
+
         screen = turtle.TurtleScreen(canvas)
+        screen.screensize(380,480)
         screen.bgcolor("#282828")
+
 
         #circle behind the clock
         circle = turtle.RawTurtle(screen)
