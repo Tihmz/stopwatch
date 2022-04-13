@@ -5,22 +5,39 @@ import tkinter as tk
 import tkinter.font as tkFont
 import time
 
-c=0
+s,m,h=0,0,0
 
-def do_stuff(app):
-    global c
-    #coord = -100, -100, 240, 210
-    #arc = canvas.create_arc(coord, start=30, extent=c, style=tk.ARC, width=3)
+def check_size(inp):
+    """
+    a function checking if a number (seconde,minute or hour)
+    need a 0 for a better display
+    ex: 01:09 is better than 1:9
+    """
+    if inp<10:
+        r = "0"+str(inp)
+    else:
+        r = str(inp)
+    return r
+
+def update_clock(app):
+    global h,m,s
     app.clock.circle(-80,6)
-    c+=6
-    app.time_label.set(str(c))
-    if c==360:
-        c=0
+    s+=1
+    if s==60:
+        s=0
+        m+=1
+        if m==60:
+            m=0
+            h+=1
         app.clock.clear()
 
-def press():
-    do_stuff()
-
+    if m==0:
+        display = check_size(s)
+    elif h==0:
+        display = "{}:{}".format(check_size(m),check_size(s))
+    else:
+        display="{}:{}:{}".format(check_size(h),check_size(m),check_size(s))
+    app.time_label.set(display)
 
 class stopwatch():
     def __init__(self, root):
@@ -35,14 +52,25 @@ class stopwatch():
         alignstr = '%dx%d+%d+%d' % (width, height, (screenwidth - width) / 2, (screenheight - height) / 2)
         root.geometry(alignstr)
         root.resizable(width=False, height=False)
-        root["bg"]="#eb4531"
+        root["bg"]="#b7ba26"#"#eb4531"
 
         #define the turtle canvas
         canvas = tk.Canvas(root)
-        canvas.config(width=380, height=480)
-        canvas.place(x=10,y=10)
+        canvas.config(width=400, height=500)
+        canvas.place(x=0,y=0)
+        #canvas.place(x=10,y=15)
         screen = turtle.TurtleScreen(canvas)
         screen.bgcolor("#282828")
+
+        #circle behind the clock
+        circle = turtle.RawTurtle(screen)
+        circle.speed(0)
+        circle.width(3)
+        circle.hideturtle()
+        circle.penup()
+        circle.goto(0,160)
+        circle.pendown()
+        circle.circle(-80)
 
         #define the moving clock object
         self.clock = turtle.RawTurtle(screen)
@@ -56,20 +84,26 @@ class stopwatch():
         #define the tkinter label to display time
         self.time_label = tk.StringVar()
 
-        label_time=tk.Label(root)
-        label_time["font"] = tkFont.Font(family='Gotham',size=12, weight = 'bold')
-        label_time["fg"] = "#000000"
-        label_time["bg"] = "#282828"
-        label_time["justify"] = "center"
-        label_time["textvariable"] = self.time_label
-        label_time.place(x=150,y=150,width=116,height=30)
+        self.label_time=tk.Label(root)
+        self.label_time["font"] = tkFont.Font(family='Gotham',size=12, weight = 'bold')
+        self.label_time["fg"] = "#ffffff"
+        self.label_time["bg"] = "#282828"
+        self.label_time["justify"] = "center"
+        self.label_time["textvariable"] = self.time_label
+        self.label_time.place(x=145,y=150,width=110,height=30)
+        #same thing but with turtle this time
 
+        self.display = turtle.RawTurtle(screen)
+        self.display.hideturtle()
+        self.display.penup()
+        self.display.goto(0,70)
+        self.display.pendown()
 
 if __name__ == "__main__":
     root = tk.Tk()
     app = stopwatch(root)
 
     while True:
-        do_stuff(app)
+        update_clock(app)
         app.page.update()
-        time.sleep(0.2)
+        #time.sleep(0.01)
