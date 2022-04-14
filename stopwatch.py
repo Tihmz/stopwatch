@@ -22,7 +22,7 @@ def check_size(inp):
 
 def update_clock(app):
     global h,m,s
-    app.clock.circle(-80,6)
+    app.clock.circle(-110,6)
     s+=1
     if s==60:
         s=0
@@ -49,8 +49,8 @@ class stopwatch():
         #define the tkinter window
         self.page = root
         root.title("stopwatch")
-        width=400
-        height=500
+        width=300
+        height=400
         screenwidth = root.winfo_screenwidth()
         screenheight = root.winfo_screenheight()
         alignstr = '%dx%d+%d+%d' % (width, height, (screenwidth - width) / 2, (screenheight - height) / 2)
@@ -60,10 +60,9 @@ class stopwatch():
 
         #define the turtle canvas
         canvas = tk.Canvas(root)
-        canvas.config(width=390, height=490)
-        #canvas.pack(expand=1, fill="both")
+        canvas.config(width=290, height=390)
 
-        canvas.place(x=5,y=5,width=390,height=490)
+        canvas.place(x=5,y=5,width=290,height=390)
         screen = turtle.TurtleScreen(canvas)
         screen.screensize(380,480)
         screen.bgcolor("#282828")
@@ -77,7 +76,7 @@ class stopwatch():
         circle.penup()
         circle.goto(0,160)
         circle.pendown()
-        circle.circle(-80)
+        circle.circle(-110)
 
         #define the moving clock object
         self.clock = turtle.RawTurtle(screen)
@@ -97,7 +96,7 @@ class stopwatch():
         self.label_time["bg"] = "#282828"
         self.label_time["justify"] = "center"
         self.label_time["textvariable"] = self.time_label
-        self.label_time.place(x=145,y=150,width=110,height=30)
+        self.label_time.place(x=95,y=105,width=110,height=30)
 
         #start/pause self.button
         self.button_text = tk.StringVar()
