@@ -4,7 +4,7 @@
   <img src="data/stopwatch.png" width=20% height=20%/>
 </p>
 
-It a simple stopwatch application made with tkinter and turtle
+It's a simple stopwatch application made with tkinter and turtle
 it doesn't look pretty but it work fine enough to use
 
 I'm always in need of a stopwatch when I run some tests, and I tought it would be funnier to make one myself
