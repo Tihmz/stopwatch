@@ -101,13 +101,15 @@ class stopwatch():
 
         #start/pause self.button
         self.button_text = tk.StringVar()
-        self.button_text.set("START")
+        self.button_text.set("\U000025b6")
 
         button_start=tk.Button(root)
         button_start["bg"] = "#282828"
         button_start["font"] = tkFont.Font(family="Gotham",size=20)
         button_start["fg"] = "#ffffff"
         button_start["justify"] = "center"
+        button_start["highlightthickness"] = 0
+        button_start["borderwidth"] = 0
         button_start["textvariable"] = self.button_text
         button_start.place(x=150,y=400,width=100,height=40)
         button_start["command"] = self.button_start
@@ -115,18 +117,20 @@ class stopwatch():
     def button_start(self):
         global RUNNING
         RUNNING = not RUNNING
-        if(RUNNING): self.button_text.set("STOP")
-        else: self.button_text.set("START")
+        if(RUNNING): self.button_text.set('\U00002016')
+        else: self.button_text.set('\U000025b6')
 
 
 if __name__ == "__main__":
     root = tk.Tk()
     app = stopwatch(root)
+    t1=0
     while True:
         app.page.update()
         if RUNNING:
-            t1 = time.perf_counter()
-            update_clock(app)
             t2 = time.perf_counter()
-            d = t2-t1
-            time.sleep(1-d)
+            if t2 - t1 > 1:
+                update_clock(app)
+                t1 = t2
+                #d = t2-t1
+                #time.sleep(1-d)
