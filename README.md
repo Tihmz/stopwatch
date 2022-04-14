@@ -5,7 +5,8 @@
 </p>
 
 It's a simple stopwatch application made with tkinter and turtle
-it doesn't look pretty but it work fine enough to use
+
+It doesn't look pretty but it work fine enough for me to use it
 
 I'm always in need of a stopwatch when I run some tests, and I tought it would be funnier to make one myself
 
