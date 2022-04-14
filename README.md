@@ -1,7 +1,7 @@
 # python stop-watch
 
 <p align="center">
-  <img src="data/stopwatch.png" width=50% height=50%/>
+  <img src="data/stopwatch.png" width=20% height=20%/>
 </p>
 
 It a simple stopwatch application made with tkinter and turtle
