@@ -1,20 +1,27 @@
 # python stop-watch
 
-## todo list:
-```
-_better color when hovering on button ? 
-_better circle behind the circle (you know what that mean) 
-_reset button ↻
-_flag button
-_maybe better time calculation
+<p align="center">
+  <img src="data/stopwatch.png" />
+</p>
 
-if really i'm not lazy:
+It a simple stopwatch application made with tkinter and turtle
+it doesn't look pretty but it work fine enough to use
+
+I'm always in need of a stopwatch when I run some tests, and I tought it would be funnier to make one myself
+
+### how it look so far :
+
+![s1](data/shot1.png)
+
+![s2](data/shot2.png)
+
+#### there is also a "flag" to save a time
+
+![s3](data/shot3.png)
+
+### todo list:
+```
 _add the timer function
 _add a theme selector
 ```
 
-### edit : it start to look good :
-
-![s1](data/sw-shot1.png)
-
-![s2](data/sw-shot2.png)
