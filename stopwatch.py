@@ -22,7 +22,6 @@ def check_size(inp):
 
 def update_clock(app):
     global h,m,s
-    app.clock.circle(-110,6)
     s+=1
     if s==60:
         s=0
@@ -38,10 +37,11 @@ def update_clock(app):
     if m==0 and h==0:
         display = check_size(s)
     elif h==0:
-        display = "{}:{}".format(check_size(m),check_size(s))
+        display = "{} : {}".format(check_size(m),check_size(s))
     else:
-        display="{}:{}:{}".format(check_size(h),check_size(m),check_size(s))
+        display="{} : {} : {}".format(check_size(h),check_size(m),check_size(s))
     app.time_label.set(display)
+    app.clock.circle(-110,6)
 
 class stopwatch():
     def __init__(self, root):
@@ -89,36 +89,69 @@ class stopwatch():
 
         #define the tkinter label to display time
         self.time_label = tk.StringVar()
+        self.time_label.set("00:00:00")
 
         self.label_time=tk.Label(root)
-        self.label_time["font"] = tkFont.Font(family='DejaVu Sans Mono',size=12)
+        self.label_time["font"] = tkFont.Font(family='DejaVu Sans Mono',size=15)
         self.label_time["fg"] = "#ffffff"
         self.label_time["bg"] = "#282828"
         self.label_time["justify"] = "center"
         self.label_time["textvariable"] = self.time_label
-        self.label_time.place(x=95,y=105,width=110,height=30)
+        self.label_time.place(x=95,y=135,width=110,height=30)
 
         #start/pause self.button
         self.button_text = tk.StringVar()
         self.button_text.set("\U000025b6")
 
+        def start_on_enter(e):
+            button_start["bg"]="#282828"
+            button_start["fg"]="#000000"
+
+        def start_on_leave(e):
+            button_start["bg"]="#282828"
+            button_start["fg"]="#ffffff"
+
         button_start=tk.Button(root)
         button_start["bg"] = "#282828"
+        button_start["activebackground"] = "#282828"
+        button_start["activeforeground"] = "#ffffff"
         button_start["font"] = tkFont.Font(family="Gotham",size=20)
-        button_start["fg"] = "#ffffff"
+        button_start["fg"] = "#a5a5a5"
         button_start["justify"] = "center"
         button_start["highlightthickness"] = 0
         button_start["borderwidth"] = 0
         button_start["textvariable"] = self.button_text
-        button_start.place(x=150,y=400,width=100,height=40)
+        button_start.place(x=100,y=330,width=100,height=40)
         button_start["command"] = self.button_start
+
+        #change color when hovering
+        # button_start.bind('<Leave>', start_on_leave)
+        # button_start.bind('<Enter>', start_on_enter)
+
+        #close app button X
+
+        button_close=tk.Button(root)
+        button_close["bg"]="#282828"
+        button_close["activebackground"] = "#282828"
+        button_close["activeforeground"] = "#ff0000"
+        button_close["fg"]="#a5a5a5"
+        button_close["font"] = tkFont.Font(family="Gotham",size=25)
+        button_close["justify"]="center"
+        button_close["highlightthickness"] = 0
+        button_close["borderwidth"] = 0
+        button_close["text"] = '\U00002715'
+        button_close.place(x=250,y=10,width=40,height=40)
+        button_close["command"] = self.button_close
+
+
+    def button_close(self):
+        self.page.destroy()
 
     def button_start(self):
         global RUNNING
         RUNNING = not RUNNING
-        if(RUNNING): self.button_text.set('\U00002016')
-        else: self.button_text.set('\U000025b6')
-
+        if(RUNNING): self.button_text.set('\U000001c0\U000001c0') # 01c0 is better than 01c1 bcause more space btween the 2 bar || 
+        else: self.button_text.set('\U000025b6') # ▶
 
 if __name__ == "__main__":
     root = tk.Tk()
