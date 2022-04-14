@@ -15,6 +15,6 @@ _add a theme selector
 
 ### edit : it start to look good :
 
-![s1](data/sw-shot1)
+![s1](data/sw-shot1.png)
 
-![s2](data/sw-shot2)
+![s2](data/sw-shot2.png)
