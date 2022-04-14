@@ -1,7 +1,9 @@
 #!/usr/bin/python3
 
 import turtle
+from tkinter import *
 import tkinter as tk
+from tkinter.ttk import * 
 import tkinter.font as tkFont
 import time
 
@@ -56,7 +58,9 @@ class stopwatch():
         alignstr = '%dx%d+%d+%d' % (width, height, (screenwidth - width) / 2, (screenheight - height) / 2)
         root.geometry(alignstr)
         root.resizable(width=False, height=False)
-        root["bg"]="#b7ba26"#"#eb4531"
+        root["bg"]="#b7ba26"
+        p=PhotoImage(file='data/stopwatch.png')
+        root.iconphoto(False,p)
 
         #define the turtle canvas
         canvas = tk.Canvas(root)
@@ -64,14 +68,13 @@ class stopwatch():
 
         canvas.place(x=5,y=5,width=290,height=390)
         screen = turtle.TurtleScreen(canvas)
-        screen.screensize(380,480)
         screen.bgcolor("#282828")
-
 
         #circle behind the clock
         circle = turtle.RawTurtle(screen)
         circle.speed(0)
-        circle.width(3)
+        circle.width(1)
+        circle.color("#000000")
         circle.hideturtle()
         circle.penup()
         circle.goto(0,160)
