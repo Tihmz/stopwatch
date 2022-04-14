@@ -1,7 +1,7 @@
 # python stop-watch
 
 <p align="center">
-  <img src="data/stopwatch.png" />
+  <img src="data/stopwatch.png" width=50% height=50%/>
 </p>
 
 It a simple stopwatch application made with tkinter and turtle
@@ -15,7 +15,7 @@ I'm always in need of a stopwatch when I run some tests, and I tought it would b
 
 ![s2](data/shot2.png)
 
-#### there is also a "flag" to save a time
+#### there is also a "flag" button to save a time
 
 ![s3](data/shot3.png)
 
